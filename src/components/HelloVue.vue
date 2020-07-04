@@ -7,11 +7,22 @@
             <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
         </p>
 
-        <h3>{{userInfo.name}}</h3>
-        <div v-if="userInfo.htmlUrl"><a :href="userInfo.htmlUrl" class="github-html-url" target="_blank">{{userInfo.htmlUrl}}</a>
+        <h3>Contributors</h3>
+        <button v-on:click="changeUser">click to change</button>
+        <div v-if="tips">
+            <span class="tips">{{tips}}</span>
         </div>
-        <div v-if="userInfo.avatarUrl"><img :src="userInfo.avatarUrl" :alt="userInfo.name" class="github-avatar-url" />
+        <br>
+        <div v-if="userInfo.userName">
+            <span class="github-user-name">{{userInfo.userName}}</span>
         </div>
+        <div v-if="userInfo.htmlUrl">
+            <a :href="userInfo.htmlUrl" class="github-html-url" target="_blank">{{userInfo.htmlUrl}}</a>
+        </div>
+        <div v-if="userInfo.avatarUrl">
+            <img :src="userInfo.avatarUrl" :alt="userInfo.userName" class="github-avatar-url" />
+        </div>
+
     </div>
 </template>
 
@@ -26,23 +37,52 @@
     data: () => {
       return {
         a: 1,
-        isLoaded: false,
+        isLoading: false,
         totalCount: 0,
         userInfo: {
-          name: 'Evan You',
+          userId: '',
+          userName: '',
           htmlUrl: '',
           avatarUrl: ''
-        }
+        },
+        tips: ''
       };
     },
-    mounted() {
-      // https://github.com/yyx990803
-      axios.get('https://api.github.com/search/users?q=yyx990803').then((res) => {
-        const userInfo = res.data && res.data.items && res.data.items[0];
+    methods: {
+      fetchUser: function (userId, userName) {
+        if (this.isLoading) {
+          this.tips = 'click too fast...';
+          return;
+        }
 
-        this.userInfo.htmlUrl = userInfo.html_url;
-        this.userInfo.avatarUrl = userInfo.avatar_url;
-      });
+        this.isLoading = true;
+        this.tips = 'loading...';
+
+        axios.get(`https://api.github.com/search/users?q=${userId}`).then((res) => {
+          const userInfo = res.data && res.data.items && res.data.items[0];
+
+          this.isLoading = false;
+          this.tips = '';
+          this.userInfo.userId = userId;
+          this.userInfo.userName = userName || 'unknown';
+          this.userInfo.htmlUrl = userInfo.html_url;
+          this.userInfo.avatarUrl = userInfo.avatar_url;
+        }).catch((err)=>{
+          this.tips = `Sorry some wrong hippend! Please refresh page and try again. Error message: ${err}`;
+          this.isLoading = false;
+        })
+      },
+      changeUser: function () {
+        if (this.userInfo.userId !== 'yyx990803') {
+          // https://github.com/yyx990803
+          this.fetchUser('yyx990803', 'Evan You');
+        } else {
+          this.fetchUser('Jinjiang', 'Jinjiang');
+        }
+      }
+    },
+    mounted() {
+      this.changeUser();
     }
   };
 </script>
