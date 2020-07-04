@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-   "eslintConfig": {
+  "eslintConfig": {
     "root": true,
     "env": {
       "node": true
@@ -40,7 +40,8 @@
   "bugs": {
     "url": "https://github.com/matmanjs/matman-demo-vue/issues"
   },
-  "homepage": "https://github.com/matmanjs/matman-demo-vue#readme", "dependencies": {
+  "homepage": "https://github.com/matmanjs/matman-demo-vue#readme",
+  "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
