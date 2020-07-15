@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 *-lock.json
 *.log
+
+DevOps/**/**/node_modules
+DevOps/**/**/build

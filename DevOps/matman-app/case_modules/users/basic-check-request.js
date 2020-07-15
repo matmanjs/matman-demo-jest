@@ -31,18 +31,18 @@ module.exports = async pageDriverOpts => {
 };
 
 // 打开以下注释，运行脚本查看运行结果
-// module.exports({
-//   show: true,
-//   doNotCloseBrowser: true,
-//   useRecorder: true,
-//   queryDataMap: {
-//     users: 'success_base',
-//   },
-// })
-// .then(function (result) {
-//   console.log(JSON.stringify(result));
-// })
-// .catch(function (error) {
-//   console.error('failed:', error);
-// });
+module.exports({
+  show: true,
+  doNotCloseBrowser: true,
+  useRecorder: true,
+  queryDataMap: {
+    users: 'success_base',
+  },
+})
+.then(function (result) {
+  console.log(JSON.stringify(result));
+})
+.catch(function (error) {
+  console.error('failed:', error);
+});
 
