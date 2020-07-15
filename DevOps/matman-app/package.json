@@ -1,0 +1,19 @@
+{
+  "name": "matman-app",
+  "description": "matman-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "matman build",
+    "build-dev": "matman build --dev"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "matman": "^6.0.2",
+    "matman-runner-puppeteer": "^6.0.3",
+    "mockstar": "^1.1.5",
+    "web-crawl-util": "^0.1.1"
+  },
+  "devDependencies": {
+    "matman-cli": "^6.0.2"
+  }
+}

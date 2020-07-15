@@ -57,8 +57,8 @@
 
         this.isLoading = true;
         this.tips = 'loading...';
-
-        axios.get(`https://api.github.com/search/users?q=${userId}`).then((res) => {
+        // 此处模拟获取https://api.github.com的数据，因此需要打开代理
+        axios.get(`https://now.qq.com/search/users?q=${userId}`).then((res) => {
           const userInfo = res.data && res.data.items && res.data.items[0];
 
           this.isLoading = false;
