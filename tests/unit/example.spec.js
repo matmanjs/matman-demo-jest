@@ -4,6 +4,11 @@ import MyComponent from '../../src/components/MyComponent.vue'
 
 import HelloWorld from '../../src/components/HelloWorld.vue';
 
+/**
+ * @author tangitan
+ * @priority P1
+ * @casetype unit
+ */
 describe('HelloWorld测试', () => {
   it('renders props.msg when passed', () => {
     const msg = 'new message'
@@ -17,7 +22,11 @@ describe('HelloWorld测试', () => {
 // 挂载这个组件
 const wrapper = shallowMount(MyComponent)
 
-// 这里是一些 Jest 的测试，你也可以使用你喜欢的任何断言库或测试
+/**
+ * @author tangitan
+ * @priority P1
+ * @casetype unit
+ */
 describe('MyComponent测试', () => {
   // 检查原始组件选项
   it('has a created hook', () => {
