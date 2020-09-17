@@ -1,5 +1,5 @@
 {
-  "name": "matman-demo-vue",
+  "name": "matman-demo-jest",
   "version": "0.1.0",
   "private": true,
   "author": "helinjiang",
@@ -56,9 +56,9 @@
     "not dead"
   ],
   "bugs": {
-    "url": "https://github.com/matmanjs/matman-demo-vue/issues"
+    "url": "https://github.com/matmanjs/matman-demo-jest/issues"
   },
-  "homepage": "https://github.com/matmanjs/matman-demo-vue#readme",
+  "homepage": "https://github.com/matmanjs/matman-demo-jest#readme",
   "keywords": [
     "matman",
     "vue",
@@ -67,6 +67,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matmanjs/matman-demo-vue.git"
+    "url": "git+https://github.com/matmanjs/matman-demo-jest.git"
   }
 }

@@ -1,8 +1,6 @@
 {
   "description": "模拟获取github users数据",
   "route": "/search/users",
-  "defaultModule": "success_base",
-  "tags": [
-    "vue"
-  ]
+  "defaultModule": "success",
+  "tags": ["vue"]
 }

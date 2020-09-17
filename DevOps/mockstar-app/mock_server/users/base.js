@@ -1,8 +1,8 @@
-const baseCgi = require('../../lib/base-cgi');
+const baseCgi = require('../../helpers/base-cgi');
 
 const defaultData = {
-  'result': 0,
-  'err': ''
+  result: 0,
+  err: '',
 };
 
 /**
@@ -27,6 +27,6 @@ function getErrorData(errCode, errMsg) {
 }
 
 module.exports = {
-  getSuccessData: getSuccessData,
-  getErrorData: getErrorData
+  getSuccessData,
+  getErrorData,
 };
