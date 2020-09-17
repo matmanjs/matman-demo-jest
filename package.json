@@ -6,7 +6,8 @@
   "scripts": {
     "serve": "npx vue-cli-service serve",
     "build": "npx vue-cli-service build",
-    "test:unit": "npx vue-cli-service test:unit",
+    "test:unit": "npx vue-cli-service test:unit --verbose ./tests/unit",
+    "test:e2e": "npx vue-cli-service test:unit --verbose ./tests/e2e",
     "lint": "npx vue-cli-service lint"
   },
   "dependencies": {
@@ -42,7 +43,8 @@
       {
         "files": [
           "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+          "**/tests/unit/**/*.spec.{j,t}s?(x)",
+          "**/tests/e2e/**/*.spec.{j,t}s?(x)"
         ],
         "env": {
           "jest": true

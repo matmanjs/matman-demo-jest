@@ -1,6 +1,8 @@
 import checkPage from '../../DevOps/matman-app/case_modules/users/basic-check.js';
 
 describe('测试demo页面', () => {
+  jest.setTimeout(30000);
+
   let resultData;
 
   beforeAll(async function() {
