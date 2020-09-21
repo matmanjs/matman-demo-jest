@@ -10,7 +10,7 @@ const whistle = require('../DevOps/whistle');
 async function createE2ERunner() {
   return new E2ERunner({
     workspacePath: path.join(__dirname, '../'),
-    outputPath: path.join(__dirname, '../.matman_output')
+    outputPath: path.join(__dirname, '../.matman_output'),
   });
 }
 
@@ -32,22 +32,29 @@ async function prepareSUT(e2eRunner, config = {}) {
   let projectPort;
   if (config.isBuildDev) {
     projectPort = await e2eRunner.buildProject(
-      port => `npx cross-env ENABLE_E2E_TEST=1 PORT=${port} npm start`,
+      (port) => `npx cross-env ENABLE_E2E_TEST=1 PORT=${port} npm start`,
       {
         cwd: e2eRunner.workspacePath,
         port: config.projectPort,
         usePort: true,
-        checkIfBuildCompleted: stdoutData => stdoutData && stdoutData.indexOf('Compiled successfully') > -1,
-      },
+        checkIfBuildCompleted: (stdoutData) =>
+          stdoutData && stdoutData.indexOf('Compiled successfully') > -1,
+      }
     );
   } else {
-    await e2eRunner.buildProject('npx cross-env ENABLE_E2E_TEST=1 npm run build', {
-      cwd: e2eRunner.workspacePath,
-    });
+    await e2eRunner.buildProject(
+      'npx cross-env ENABLE_E2E_TEST=1 npm run build',
+      {
+        cwd: e2eRunner.workspacePath,
+      }
+    );
   }
 
   // 第二步：启动 mockstar
-  const mockstarAppPath = path.join(e2eRunner.workspacePath, './DevOps/mockstar-app');
+  const mockstarAppPath = path.join(
+    e2eRunner.workspacePath,
+    './DevOps/mockstar-app'
+  );
   const mockstarPort = await e2eRunner.startMockstar(mockstarAppPath, {
     port: config.mockstarPort,
   });
@@ -68,7 +75,10 @@ async function prepareSUT(e2eRunner, config = {}) {
   });
 
   // 第四步：启动 matman
-  const matmanAppPath = path.join(e2eRunner.workspacePath, './DevOps/matman-app');
+  const matmanAppPath = path.join(
+    e2eRunner.workspacePath,
+    './DevOps/matman-app'
+  );
   await e2eRunner.startMatman(matmanAppPath);
 
   return {
@@ -97,7 +107,6 @@ async function runE2ETestDirect(e2eRunner, config = {}) {
     cwd: e2eRunner.workspacePath,
     whistlePort,
     matmanAppPath,
-    mochawesomeJsonFilePath: path.join(e2eRunner.outputPath, './mochawesome/mochawesome.json'),
   });
 
   return {
@@ -116,7 +125,13 @@ async function runE2ETestDirect(e2eRunner, config = {}) {
  * @return {Promise<void>}
  */
 async function bootstrap(params) {
-  const { projectPort, mockstarPort, whistlePort, useCurrentStartedWhistle, isBuildDev } = params;
+  const {
+    projectPort,
+    mockstarPort,
+    whistlePort,
+    useCurrentStartedWhistle,
+    isBuildDev,
+  } = params;
 
   // 创建 E2ERunner
   const e2eRunner = await createE2ERunner();
