@@ -6,8 +6,7 @@
         For a guide and recipes on how to configure / customize this project,<br />
         check out the
         <a href="https://cli.vuejs.org" target="_blank" rel="noopener">
-          vue-cli documentation </a
-        >.
+          vue-cli documentation </a>.
       </p>
     </div>
 
@@ -33,7 +32,7 @@
       <div class="search-result">
         <div v-if="searchKey">
           <p class="search-preview-keyword">
-            当前搜索的关键词为： <span style="color:red">{{ searchKey }}</span>
+            当前搜索的关键词为： <span style="color:red" id="search-key">{{ searchKey }}</span>
           </p>
           <p class="search-preview-length">
             搜索结果数量为：
@@ -41,24 +40,11 @@
           </p>
         </div>
 
-        <ul
-          class="search-result-ul"
-          v-for="(userInfo, index) in resultList"
-          :key="index"
-        >
+        <ul class="search-result-ul" v-for="(userInfo, index) in resultList" :key="index">
           <li>
-            <img
-              :src="userInfo.avatar_url"
-              :alt="userInfo.userName"
-              class="github-avatar-url"
-            />
+            <img :src="userInfo.avatar_url" :alt="userInfo.userName" class="github-avatar-url" />
             <span class="github-user-name">{{ userInfo.login }}</span>
-            <a
-              :href="userInfo.html_url"
-              class="github-html-url"
-              target="_blank"
-              >{{ userInfo.html_url }}</a
-            >
+            <a :href="userInfo.html_url" class="github-html-url" target="_blank">{{ userInfo.html_url }}</a>
           </li>
         </ul>
       </div>
@@ -84,7 +70,7 @@ export default {
     };
   },
   methods: {
-    fetchUser: function(userId, userName) {
+    fetchUser: function (userId, userName) {
       if (this.isLoading) {
         this.tips = 'click too fast...';
         return;
@@ -92,7 +78,8 @@ export default {
 
       this.isLoading = true;
       this.tips = 'loading...';
-      this.searchKey = userName;
+      this.searchKey = '';
+
       // 此处模拟获取 https://api.github.com 的数据，因此需要打开代理
       axios
         .get(`https://api.github.com/search/users?q=${userId}`)
@@ -101,18 +88,20 @@ export default {
           this.tips = '';
           this.resultList = (res.data && res.data.items) || [];
           this.loaded = true;
+          this.searchKey = userName;
         })
         .catch((err) => {
           this.tips = `Sorry some wrong hippend! Please refresh page and try again. Error message: ${err}`;
           this.isLoading = false;
           this.loaded = true;
+          this.searchKey = userName;
         });
     },
-    searchUser01: function() {
+    searchUser01: function () {
       // https://github.com/yyx990803
-      this.fetchUser('yyx990803', 'Evan You');
+      this.fetchUser('yyx990803', 'yyx990803');
     },
-    searchUser02: function() {
+    searchUser02: function () {
       // https://github.com/matmanjs
       this.fetchUser('matmanjs', 'matmanjs');
     },
