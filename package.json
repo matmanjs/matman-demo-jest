@@ -7,7 +7,12 @@
     "serve": "npx vue-cli-service serve",
     "build": "npx vue-cli-service build",
     "test:unit": "npx vue-cli-service test:unit --verbose ./tests/unit",
-    "test:e2e": "npx vue-cli-service test:unit --verbose ./tests/e2e",
+    "test:e2e2": "npx vue-cli-service test:unit --verbose ./tests/e2e",
+    "test:e2e": "node tests/run-e2e-test.js",
+    "test:e2e:show": "cross-env SHOW_BROWSER=1 npm run test:e2e",
+    "test:e2e:direct": "npx vue-cli-service test:unit --verbose ./tests/e2e",
+    "test:e2e:bootstrap": "node tests/bootstrap-sut.js",
+    "test:e2e:bootstrap:dev": "node tests/bootstrap-sut-dev.js",
     "lint": "npx vue-cli-service lint"
   },
   "dependencies": {
@@ -24,6 +29,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "matman-e2e-test": "^1.2.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

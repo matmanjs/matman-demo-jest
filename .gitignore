@@ -27,3 +27,4 @@ pnpm-debug.log*
 
 DevOps/**/**/node_modules
 DevOps/**/**/build
+.matman_output

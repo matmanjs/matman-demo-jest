@@ -27,7 +27,7 @@ module.exports = async (pageDriverOpts) => {
       '#app .hello .search-github .search-actions .search-btn.btn01'
     );
 
-    await page.waitFor(2000);
+    await page.waitFor(5000);
 
     await page.waitFor(
       '#app .hello .search-github .search-result .search-preview-keyword'
@@ -40,7 +40,7 @@ module.exports = async (pageDriverOpts) => {
       '#app .hello .search-github .search-actions .search-btn.btn02'
     );
 
-    await page.waitFor(1000);
+    await page.waitFor(5000);
 
     await page.waitFor(
       '#app .hello .search-github .search-result .search-preview-keyword'
